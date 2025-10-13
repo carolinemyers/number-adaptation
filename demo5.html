@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo 5: PSE Experiments</title>
+    <!-- your existing CSS & jsPsych includes -->
+    <link rel="stylesheet" href="main.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background-color: #62a0d6;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        justify-items: center;
+      }
+      .grid-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+      button {
+        padding: 10px 25px;
+        font-size: 22px;
+        border-radius: 8px;
+        border: 3px solid white;
+        background-color: #62a0d6;
+        color: white;
+        margin-top: 8px;
+      }
+      button:hover {
+        background-color: #5490b0;
+      }
+      img {
+        max-width: 300px;
+        border-radius: 4px;
+      }
+    </style>
+</head>
+<body>
+
+  <h1>Demo 5: PSE (Point of Subjective Equality) Experiments</h1>
+  <p>Select one of the three PSE sub-demos below:</p>
+
+  <div class="grid-container">
+    <!-- Sub-experiment A -->
+    <div class="grid-item" id="pseA">
+      <img src="pseA.png" alt="PSE A">
+      <button id="btnPseA">PSE Experiment A</button>
+    </div>
+    <!-- Sub-experiment B -->
+    <div class="grid-item" id="pseB">
+      <img src="pseB.png" alt="PSE B">
+      <button id="btnPseB">PSE Experiment B</button>
+    </div>
+    <!-- Sub-experiment C -->
+    <div class="grid-item" id="pseC">
+      <img src="pseC.png" alt="PSE C">
+      <button id="btnPseC">PSE Experiment C</button>
+    </div>
+  </div>
+
+  <script>
+    // paths to your demo-5 scripts
+    const demo5Dynamic = 'demo5Dynamic.js';
+    const demo5Static = 'demo5Static.js';
+    const demo5Return = 'demo5C.js';
+
+    // helper to load a jsPsych script
+    function loadJsPsychExperiment(path) {
+      const s = document.createElement('script');
+      s.src = path;
+      document.body.appendChild(s);
+    }
+
+    // wire up each button (and container click)
+    document.getElementById('btnPseA').onclick =
+      document.getElementById('pseA').onclick = () => loadJsPsychExperiment(demo5Dynamic);
+
+    document.getElementById('btnPseB').onclick =
+      document.getElementById('pseB').onclick = () => loadJsPsychExperiment(demo5Static);
+
+    document.getElementById('btnPseC').onclick =
+      document.getElementById('pseC').onclick = () => loadJsPsychExperiment(demo5C);
+  </script>
+
+</body>
+</html>

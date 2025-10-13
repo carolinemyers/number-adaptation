@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Adaptation Demo and Experiment</title>  
+    <! –– jspsych ––> 
+    <script src="../../../Packages/jspsych-6.3.1"></script>
+    <script src="../../../Packages/jspsych-6.3.1/jspsych.js"></script>
+
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-image-keyboard-response.js"></script>         
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-survey-text.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-mouse-reconstruction.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-mouse-reconstructionCM.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-survey-html-form.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-video-keyboard-response.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-canvas-keyboard-response.js"></script>
+
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-ori-report3.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-ori-report-last-question.js"></script>
+    <script src="../../../Packages/jspsych-6.3.1/plugins/jspsych-survey-html-form.js"></script>
+    
+    <! –– numeric ––> 
+    <script src="../../../Packages/numeric-master/"></script>  
+    <script src="../../../Packages/numeric-master/src/numeric.js"></script>  
+
+    <! –– p5 generator ––> 
+    <script src="../../../Packages/p5/p5.js"></script>  
+    <script src="../../../Packages/p5/p5-test.js"></script>  
+    <script src="../../../Packages/p5/p5.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5/1.4.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>  
+
+    <! –– gabor generator ––> 
+    <script src="../../../Packages/gaborgen/gabCM2.js"></script>  
+
+    <! –– sheet JS ––> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+    <! –– js library ––> 
+    <script src="../../../Packages/js_library/make_condition.js"></script>     
+    <script src="../../../Packages/js_library/modernizr-custom.js"></script>     
+    <script src="../../../Packages/js_library/underscore-min.js"></script>   
+
+    <! –– gstatic library ––> 
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-database.js"></script>      
+    
+    <! –– jquery library ––> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       
+    <!-- Link main CSS for the main page -->
+    <link rel="stylesheet" href="main.css">
+
+    <! –– CM functions ––> 
+    <script src="../../../Packages/CM_Functions/write_data.php"></script>
+    <script src="../../../Packages/CM_Functions/CMFunctions.js"></script>
+
+    <! –– CM functions ––> 
+    <script src="../../../Packages/CM_Functions/getRandomArbitrary.js"></script>
+    <script src="../../../Packages/CM_Functions/generateArrayMaxMin.js"></script>
+
+    <!-- The canvas element for the experiment -->
+    <canvas id="experimentCanvas" color="#7e8080"></canvas>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #62a0d6;
+        }
+
+        /* Grid layout for images and buttons */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  /* 3 columns per row */
+            grid-gap: 20px;
+            justify-items: center;
+        }
+
+        .grid-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column; /* Stack image and button vertically */
+            align-items: center;
+            cursor: pointer; /* Make the entire item clickable */
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 22px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: 3px solid white;
+            background-color: #62a0d6;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #62a0d6;
+        }
+
+        img {
+            max-width: 330px;  /* Increase the image size */
+            margin-bottom: 10px;
+            border-radius: 4px;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo container with both the Lab and Johns Hopkins logo -->
+    <div class="logo-container">
+        <img src="hopkinslogo.png" alt="Johns Hopkins Logo">
+        <img src="logo.png" alt="Lab Logo">
+    </div>
+
+    <h1>Number adaptation demo materials for Myers, Firestone, & Halberda (forthcoming)</h1>
+    
+    <div class="grid-container">
+        <!-- Burr and Ross -->
+        <div class="grid-item" id="burrRossContainer">
+            <img src="burrRoss.png" alt="Burr and Ross">
+            <button id="burrRossDemo">Canonical number adaptation</button>
+        </div>
+
+        <!-- Experiment 1 with GIF -->
+        <div class="grid-item" id="exp1Container">
+            <img src="exp1.png" alt="Experiment 1">
+            <button id="jsPsychExperiment1">Experiment 1: Translating discs</button>
+        </div>
+
+      
+        <div class="grid-item" id="exp2Container">
+            <img src="exp2.png" alt="Experiment 2">
+            <button id="jsPsychExperiment2">Experiment 2: Dot motion within discs</button>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="grid-item" id="exp3Container">
+            <img src="exp3.png" alt="Experiment 3">
+            <button id="jsPsychExperiment3">Experiment 3: Visible discs removed</button>
+        </div>
+
+        <div class="grid-item" id="exp4Container">
+            <img src="exp4.png" alt="Experiment 4">
+            <button id="jsPsychExperiment4">Experiment 4: Non-adapted controls</button>
+        </div>
+
+        <div class="grid-item" id="exp5Container">
+            <img src="exp5.png" alt="Experiment 5">
+            <button id="jsPsychExperiment5">(Supplemental): PSE</button>
+        </div>
+    </div>
+
+    <script>
+        // jsPsych experiment URLs or local script paths
+        const burrRossScript = 'burrRoss.js';
+        const jsPsychScript1 = 'demo1.js';
+        const jsPsychScript2 = 'demo2.js';
+        const jsPsychScript3 = 'demo3.js';
+        const jsPsychScript4 = 'demo4.js';
+        const jsPsychScript5 = 'demo5_staticFirstTrial.js';
+        // Add event listeners for Burr and Ross
+        document.getElementById('burrRossDemo').addEventListener('click', function() {
+            loadJsPsychExperiment(burrRossScript,'jspsychLADYBUGSdemo.css');
+        });
+        document.getElementById('burrRossContainer').addEventListener('click', function() {
+            loadJsPsychExperiment(burrRossScript,'jspsychLADYBUGSdemo.css');
+        });
+
+        // Add event listeners for Experiment 1
+        document.getElementById('jsPsychExperiment1').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript1,'jspsychLADYBUGSdemo.css');
+        });
+        document.getElementById('exp1Container').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript1,'jspsychLADYBUGSdemo.css');
+        });
+
+        // Add event listeners for Experiment 2
+        document.getElementById('jsPsychExperiment2').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript2,'jspsychLADYBUGSdemo.css');
+        });
+        document.getElementById('exp2Container').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript2,'jspsychLADYBUGSdemo.css');
+        });
+
+        // Add event listeners for Experiment 3
+        document.getElementById('jsPsychExperiment3').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript3,'jspsychLADYBUGSdemo.css');
+        });
+        document.getElementById('exp3Container').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript3,'jspsychLADYBUGSdemo.css');
+        });
+
+        // Add event listeners for Experiment 4
+         document.getElementById('jsPsychExperiment4').addEventListener('click', function() {
+        loadJsPsychExperiment(jsPsychScript4);
+        });
+        document.getElementById('exp4Container').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript4);
+        });
+
+        // Add event listeners for Experiment 5
+        document.getElementById('jsPsychExperiment5').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript5);
+        });
+        document.getElementById('exp5Container').addEventListener('click', function() {
+            loadJsPsychExperiment(jsPsychScript5);
+        });
+
+        // Function to load the jsPsych experiment
+        function loadJsPsychExperiment(jsPsychScript) {
+            const scriptElement = document.createElement('script');
+            scriptElement.src = jsPsychScript;
+            document.body.appendChild(scriptElement);
+        }
+    </script>
+</body>
+</html>
